@@ -88,46 +88,6 @@
                     android:spacing="8dp" />
             </HorizontalScrollView>
 
-            <!-- Trending Workshops Section -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="12dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Trending Workshops"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_dark" />
-
-                    <TextView
-                        android:id="@+id/seeAllTrending"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="See All"
-                        android:textColor="@color/primary_orange"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/trendingWorkshopsRecycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:nestedScrollingEnabled="false" />
-            </LinearLayout>
-
             <!-- Popular Instructors Section -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -184,14 +144,6 @@
                 android:padding="16dp"
                 android:textSize="16sp"
                 android:textColor="@color/text_dark" />
-
-            <!-- Entities RecyclerView -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/entitiesRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false" />
-
 
             <!-- CTA Banner -->
             <FrameLayout

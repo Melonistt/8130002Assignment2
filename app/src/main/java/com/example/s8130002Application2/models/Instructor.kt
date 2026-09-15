@@ -5,6 +5,7 @@ import androidx.annotation.DrawableRes
 data class Instructor(
     val id: Int,
     val name: String,
-    val followers: Int,
+    val specialty: String,
+    val description: String,
     @DrawableRes val profileImageUrl: Int
 )

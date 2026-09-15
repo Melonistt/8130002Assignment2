@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_light">
@@ -12,17 +13,31 @@
         android:paddingTop="40dp"
         android:paddingBottom="24dp">
 
-        <!-- Decorative Header (from old) -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <!-- Decorative Header -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginBottom="30dp">
+
+            <!-- Large circle background -->
+
+            <!-- Small circle inside -->
+
             <View
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="top|end"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/circle_peach_light" />
+                android:background="@drawable/circle_peach_light"
+                android:elevation="0dp" />
+
             <View
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -30,12 +45,16 @@
                 android:layout_marginEnd="40dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/circle_green_light" />
+
+            <!-- Icon circle -->
             <View
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginStart="10dp"
-                android:background="@drawable/circle_orange" />
+                android:background="@drawable/circle_orange"
+                android:elevation="2dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="29dp"
@@ -44,36 +63,95 @@
                 android:layout_marginTop="41dp"
                 android:text="★"
                 android:textColor="@color/white"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:elevation="3dp"/>
+
         </FrameLayout>
 
-        <!-- Title -->
-        <TextView
+        <!-- Main Title -->
+
+        <!-- Subtitle -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Student Login"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_dark"
-            android:gravity="center"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="0dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Learn from"
+                android:textColor="@color/text_dark"
+                android:textSize="38sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="the best."
+            android:textColor="@color/primary_orange"
+            android:textSize="38sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Access your dashboard"
-            android:textSize="14sp"
+            android:text="Join thousands growing their &#xA; skills every day"
+            android:textSize="16sp"
             android:textColor="@color/text_gray"
-            android:gravity="center"
-            android:layout_marginBottom="24dp" />
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="15dp" />
 
-        <!-- Student ID Input -->
-        <EditText
-            android:id="@+id/usernameInput"
+        <!-- Tabs -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="Student ID (e.g., 12345678)"
-            android:inputType="text"
+            android:orientation="horizontal"
+            android:background="@drawable/tab_background"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:id="@+id/tab_login"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Log in"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_dark" />
+
+            <View
+                android:id="@+id/tab_indicator"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/text_gray" />
+
+            <TextView
+                android:id="@+id/tab_signup"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Sign up"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_gray" />
+
+        </LinearLayout>
+
+        <!-- Email Input -->
+        <EditText
+            android:id="@+id/email_input"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Student ID"
+            android:autofillHints="emailAddress"
+            android:inputType="textEmailAddress"
             android:background="@drawable/edit_text_background"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
@@ -83,85 +161,117 @@
             android:drawableStart="@drawable/ic_email"
             android:drawablePadding="12dp" />
 
-        <!-- First Name Input -->
+        <!-- Password Input -->
         <EditText
-            android:id="@+id/passwordInput"
+            android:id="@+id/password_input"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="First Name"
-            android:inputType="text"
+            android:hint="First name"
+            android:autofillHints="password"
+            android:inputType="textPassword"
             android:background="@drawable/edit_text_background"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:textSize="14sp"
             android:textColorHint="@color/text_light_gray"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="12dp"
             android:drawableStart="@drawable/ic_password"
-            android:drawablePadding="12dp" />
+            android:drawablePadding="12dp"
+            android:drawableEnd="@drawable/ic_eye_off" />
 
-        <!-- Endpoint Selection -->
+        <!-- Forgot Password Link -->
         <TextView
+            android:id="@+id/forgot_password_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Campus"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_dark"
-            android:layout_marginBottom="8dp" />
+            android:text="Forgot password?"
+            android:textSize="12sp"
+            android:textColor="@color/primary_orange"
+            android:layout_gravity="end"
+            android:layout_marginBottom="24dp" />
 
-        <RadioGroup
-            android:id="@+id/endpointGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp">
-
-            <RadioButton
-                android:id="@+id/radioFootscray"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Footscray"
-                android:checked="true"
-                android:textSize="14sp"
-                android:textColor="@color/text_dark"
-                android:layout_marginBottom="8dp" />
-
-            <RadioButton
-                android:id="@+id/radioSydney"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sydney"
-                android:textSize="14sp"
-                android:textColor="@color/text_dark"
-                android:layout_marginBottom="8dp" />
-
-            <RadioButton
-                android:id="@+id/radioBr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BR"
-                android:textSize="14sp"
-                android:textColor="@color/text_dark" />
-        </RadioGroup>
-
-        <!-- Login Button -->
+        <!-- Start Learning Button -->
         <Button
-            android:id="@+id/loginButton"
+            android:id="@+id/start_learning_btn"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="Login"
+            android:text="Start Learning →"
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:background="@drawable/button_primary"
             android:layout_marginBottom="20dp" />
 
-        <!-- Progress Bar -->
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
+        <!-- Continue With Text -->
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:visibility="gone" />
+            android:text="or continue with"
+            android:textSize="12sp"
+            android:textColor="@color/text_gray"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Social Login Buttons -->
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <Button
+                android:id="@+id/google_login_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Google"
+                android:textSize="14sp"
+                android:textColor="@color/text_dark"
+                android:background="@drawable/button_social"
+                android:drawableStart="@drawable/ic_google"
+                android:drawablePadding="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/facebook_login_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Facebook"
+                android:textSize="14sp"
+                android:textColor="@color/text_dark"
+                android:background="@drawable/button_social"
+                android:drawableStart="@drawable/ic_google"
+                android:drawablePadding="8dp"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <!-- Join Free Link -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't have an account? "
+                android:textSize="12sp"
+                android:textColor="@color/text_gray" />
+
+            <TextView
+                android:id="@+id/join_free_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Join free"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_orange" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

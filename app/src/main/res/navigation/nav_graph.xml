@@ -7,7 +7,9 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.s8130002Application2.presentation.fragments.LoginFragment"
+        android:layout="@layout/fragment_login"
         android:label="Login" />
+
 
     <fragment
         android:id="@+id/dashboardFragment"

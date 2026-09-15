@@ -4,79 +4,66 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.example.s8130002Application2.databinding.FragmentDashboardBinding
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.s8130002Application2.adapters.EntityAdapter
-import com.example.s8130002Application2.presentation.viewmodel.DashboardUiState
+import com.example.s8130002Application2.databinding.FragmentDashboardBinding
 import com.example.s8130002Application2.presentation.viewmodel.DashboardViewModel
+import com.example.s8130002Application2.presentation.viewmodel.DashboardUiState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DashboardFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
-    private val binding get() = _binding!!
-
+    private lateinit var binding: FragmentDashboardBinding
     private val viewModel: DashboardViewModel by viewModels()
-    private val args: DashboardFragmentArgs by navArgs()
-
-    private lateinit var entityAdapter: EntityAdapter
+    private lateinit var entityAdapter: EntityAdapter  // Renamed to lowercase
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        binding = FragmentDashboardBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupRecyclerView()
-        setupObservers()
-
-        viewModel.fetchDashboard(args.keypass)
+        observeData()
     }
 
     private fun setupRecyclerView() {
+        // Provide the required onItemClick callback
         entityAdapter = EntityAdapter { entity ->
+            // Handle item click - e.g., navigate to details, show in dialog, etc.
             viewModel.selectEntity(entity)
-            val action = DashboardFragmentDirections.actionDashboardToDetails(
-                property1 = entity.property1,
-                property2 = entity.property2,
-                description = entity.description
-            )
-            findNavController().navigate(action)
         }
-        binding.entitiesRecyclerView.adapter = entityAdapter
+        binding.instructorsRecycler.apply {
+            adapter = entityAdapter
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
     }
 
-    private fun setupObservers() {
+    private fun observeData() {
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
             when (state) {
-                is DashboardUiState.Idle -> {
-                    binding.progressBar.visibility = View.GONE
-                }
                 is DashboardUiState.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
-                    binding.entitiesRecyclerView.visibility = View.GONE
                 }
                 is DashboardUiState.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    binding.entitiesRecyclerView.visibility = View.VISIBLE
-                    binding.entityCountText.text = "Total Entities: ${state.dashboardResponse.entityTotal}"
+                    // Use submitList() instead of updateList()
                     entityAdapter.submitList(state.dashboardResponse.entities)
                 }
                 is DashboardUiState.Error -> {
                     binding.progressBar.visibility = View.GONE
-                    binding.entitiesRecyclerView.visibility = View.GONE
-                    Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
+                    // Handle error - show toast or snackbar
+                }
+                is DashboardUiState.Idle -> {
+                    // Initial state
                 }
             }
         }
@@ -84,6 +71,7 @@ class DashboardFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 }
+
+

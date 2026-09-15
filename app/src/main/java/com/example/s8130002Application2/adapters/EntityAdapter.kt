@@ -19,6 +19,8 @@ class EntityAdapter(
             binding.apply {
                 property1Text.text = "Property 1: ${entity.property1}"
                 property2Text.text = "Property 2: ${entity.property2}"
+                // Optionally show description as well
+                // descriptionText.text = entity.description
                 root.setOnClickListener {
                     onItemClick(entity)
                 }
@@ -49,3 +51,4 @@ class EntityAdapter(
         }
     }
 }
+

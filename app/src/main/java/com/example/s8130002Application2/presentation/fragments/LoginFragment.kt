@@ -38,17 +38,12 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupListeners() {
-        binding.loginButton.setOnClickListener {
-            val username = binding.usernameInput.text.toString().trim()
+        binding.startLearningBtn.setOnClickListener {
+            val username = binding.emailInput.text.toString().trim()
             val password = binding.passwordInput.text.toString().trim()
-            val selectedEndpoint = when (binding.endpointGroup.checkedRadioButtonId) {
-                R.id.radioFootscray -> "footscray"
-                R.id.radioSydney -> "sydney"
-                R.id.radioBr -> "br"
-                else -> "footscray"
-            }
 
-            viewModel.login(username, password, selectedEndpoint)
+
+            viewModel.login(username, password, endpoint = "footscray")
         }
     }
 
@@ -56,11 +51,11 @@ class LoginFragment : Fragment() {
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is LoginUiState.Idle -> {
-                    binding.loginButton.isEnabled = true
+                    binding.startLearningBtn.isEnabled = true
                     binding.progressBar.visibility = View.GONE
                 }
                 is LoginUiState.Loading -> {
-                    binding.loginButton.isEnabled = false
+                    binding.startLearningBtn.isEnabled = false
                     binding.progressBar.visibility = View.VISIBLE
                 }
                 is LoginUiState.Success -> {
@@ -71,7 +66,7 @@ class LoginFragment : Fragment() {
                     findNavController().navigate(action)
                 }
                 is LoginUiState.Error -> {
-                    binding.loginButton.isEnabled = true
+                    binding.startLearningBtn.isEnabled = true
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
                 }
