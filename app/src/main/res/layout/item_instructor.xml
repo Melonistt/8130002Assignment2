@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingEnd="8dp">
+
+    <ImageView
+        android:id="@+id/instructorImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/placeholder_profile"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_card_background" />
+
+    <TextView
+        android:id="@+id/instructorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yuna M."
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_dark"
+        android:gravity="center"
+        android:ellipsize="end"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/followersText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.2K followers"
+        android:textSize="10sp"
+        android:textColor="@color/text_gray"
+        android:gravity="center" />
+</LinearLayout>
