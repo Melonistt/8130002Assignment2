@@ -1,5 +1,14 @@
+# Gradle files
+.gradle/
+build/
+*.apk
+*.ap_
+*.aab
+
+# Android Studio
+.idea/
 *.iml
-.gradle
+.DS_Store
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -7,10 +16,23 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
 .externalNativeBuild
-.cxx
+.cxx/
 local.properties
-/app/
+
+# Kotlin
+*.class
+*.kt.bak
+
+# Build results
+bin/
+obj/
+
+# Mac
+.DS_Store
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
