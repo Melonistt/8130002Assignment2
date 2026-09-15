@@ -30,6 +30,7 @@
             android:textColor="@color/text_dark" />
     </LinearLayout>
 
+    <!-- bar showing progress -->
     <ProgressBar
         android:id="@+id/skillProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
